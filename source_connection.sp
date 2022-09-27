@@ -26,6 +26,7 @@
 
 #define CHAT_MODERN_NEW_SIZE MSG_SIZE
 #include <chatmodern>
+#include <macros>
 
 /**
  * Разделитель
@@ -36,10 +37,6 @@
 #define FAILED "source_connection_failed"   /**< Ошибка обработки команды */
 #define SUCCESS "source_connection_success" /**< Успех обработки команды */
 
-#if !defined SPCOMP_MOD
-#define sz(%1) %1, sizeof(%1)
-#define sz2(%1,%2,%3) %1[%2 * %3], %3
-#endif
 
 #if SEND_SIZE < DATA_SIZE
 char sBuffer[DATA_SIZE];
@@ -59,12 +56,15 @@ enum RequestType
 #define SOUND_MSG 0
 #define SOUND_SEND 1
 #define SOUND_ERROR 2
-#define SOUND_MAX 3
-#define SOUND_SIZE PLATFORM_MAX_PATH
+
+#define SOUND_SIZE_1 3
+#define SOUND_SIZE_2 PLATFORM_MAX_PATH
 
 char sAccessToken[256], sVersion[6], sServer[128],
-    sSounds[SOUND_MAX * SOUND_SIZE];
+    ARR2_CREATE(sSounds, SOUND_SIZE);
 float fAntiFlood;
+int iChatsCount;
+Menu hChats;
 
 public void OnPluginStart()
 {
@@ -80,16 +80,19 @@ public void OnPluginStart()
     
     BuildPath(Path_SM, sz(sBuffer), "configs/source_connection.ini");
     KeyValues kv = new KeyValues("source_connection");
+
     if (!FileExists(sBuffer, false))
     {
         kv.JumpToKey("settings", true);
-        kv.SetString("access_token", "ключ");
-        kv.SetString("v", "5.131");
-        kv.SetString("antiflood", "5.0");
-        kv.SetNum("server", 1);
-        kv.SetString("sound_msg", "vkchat/message.mp3");
-        kv.SetString("sound_send", "vkchat/send.mp3");
-        kv.SetString("sound_error", "vkchat/error.mp3");
+        {
+            kv.SetString("access_token", "ключ");
+            kv.SetString("v", "5.131");
+            kv.SetString("antiflood", "5.0");
+            kv.SetNum("server", 1);
+            kv.SetString("sound_msg", "vkchat/message.mp3");
+            kv.SetString("sound_send", "vkchat/send.mp3");
+            kv.SetString("sound_error", "vkchat/error.mp3");
+        }
         kv.Rewind();
 
         kv.JumpToKey("chats", true);
@@ -110,39 +113,38 @@ public void OnPluginStart()
     
     if (kv.ImportFromFile(sBuffer))
     {
-        kv.JumpToKey("settings")
-        kv.GetString("access_token", sz(sAccessToken));
-        kv.GetString("v", sz(sVersion));
-        fAntiFlood = kv.GetFloat("antiflood");
-        kv.GetString("server", sz(sServer));
-        kv.GetString("sound_msg", sz2(sSounds, SOUND_MSG, SOUND_SIZE));
-        kv.GetString("sound_send", sz2(sSounds, SOUND_SEND, SOUND_SIZE));
-        kv.GetString("sound_error", sz2(sSounds, SOUND_ERROR, SOUND_SIZE));
+        kv.JumpToKey("settings");
+        {
+            kv.GetString("access_token", sz(sAccessToken));
+            kv.GetString("v", sz(sVersion));
+            fAntiFlood = kv.GetFloat("antiflood");
+            kv.GetString("server", sz(sServer));
+            kv.GetString("sound_msg", ARR2_WRITE(sSounds, SOUND_SIZE, SOUND_MSG, 0));
+            kv.GetString("sound_send", ARR2_WRITE(sSounds, SOUND_SIZE, SOUND_SEND, 0));
+            kv.GetString("sound_error", ARR2_WRITE(sSounds, SOUND_SIZE, SOUND_ERROR, 0));
+        }
         kv.Rewind();
-        /*
+        
         kv.JumpToKey("chats");
         {
-            hChats = new KeyValues("chats");
-            hChats.Import(kv);
-            if (kv.GotoFirstSubKey(false))
+            kv.GotoFirstSubKey(false);
+            
+            char peerId[32], name[32];
+            hChats = new Menu(MenuHandler_Chats);
+            hChats.SetTitle("%t", "SelectRecipient");
+            do
             {
-                char buffer[64], section[64];
-                hMenuChats = new Menu(MenuChats_Handler);
-                FormatEx(buffer, sizeof(buffer), "%t", "SelectRecipient");
-                hMenuChats.SetTitle(buffer);
-                do
-                {
-                    kv.GetSectionName(section, sizeof(section));
-                    hMenuChats.AddItem(section, section);
-                    iChats++;
-                }
-                while (kv.GotoNextKey(false));
+                kv.GetSectionName(sz(peerId));
+                kv.GetString(NULL_STRING, sz(name));
+                hChats.AddItem(peerId, name);
+                iChatsCount++;
             }
+            while (kv.GotoNextKey(false));
         }
-        */
     }
     else
         SetFailState("Configuration load error");
+    
     kv.Close();
 
     chatm.Init(GetEngineVersion());
@@ -240,4 +242,19 @@ Action SrvCmd_source_connection(int args)
 Action ConCmd_vk(int client, int args)
 {
 
+}
+
+int MenuHandler_Chats(Menu menu, MenuAction action, int client, int item)
+{
+    if (action == MenuAction_Select)
+    {
+        char peerId[12];
+        menu.GetItem(item, sz(peerId));
+        Send(peerId);
+    }
+}
+
+void Send(const char[] peerId)
+{
+    
 }

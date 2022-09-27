@@ -1,0 +1,107 @@
+"Phrases"
+{
+    "Prefix"
+    {
+        "en" "{green}[VK] "
+        "ru" "{green}[VK] "
+    }
+    "Sender"
+    {
+        "#format" "{1:s},{2:s}"
+        "en" "{lightgreen}{1} {default}{2}:"
+        "ru" "{lightgreen}{1} {default}{2}:"
+    }
+    "IsMute"
+    {
+        "en" "{default}You are muted!"
+        "ru" "{default}Вы находитесь в муте!"
+    }
+    "AllowCounts"
+    {
+        "#format" "{1:i}"
+        "en" "{default}You can write to VK only {lightgreen}{1} {default}time per round!"
+        "ru" "{default}В VK можно писать только {lightgreen}{1} {default}раз за раунд!"
+    }
+    "Successful"
+    {
+        "en" "{default}Message sent successfully"
+        "ru" "{default}Сообщение успешно отправлено!"
+    }
+    "Failed"
+    {
+        "en" "{default}Message not sent"
+        "ru" "{default}Сообщение не отправлено!"
+    }
+    "MaxVolume"
+    {
+        "en" "{default}You can't make it louder than {lightgreen}100%"
+        "ru" "{default}Вы не можете сделать это громче {lightgreen}100%"
+    }
+    "MinVolume"
+    {
+        "en" "{default}You can't make it quieter than {lightgreen}10%"
+        "ru" "{default}Вы не можете сделать это тише {lightgreen}10%"
+    }
+    
+    // Дальше цвета ставить нельзя
+    "CensoredData"
+    {
+        "en" "HIDDEN"
+        "ru" "СКРЫТО"
+    }
+    "SelectRecipient"
+    {
+        "en" "Select recipient:"
+        "ru" "Выберите получателя:"
+    }
+    "MenuPrefix"
+    {
+        "en" "VK"
+        "ru" "VK"
+    }
+    "Volume"
+    {
+        "en" "Volume"
+        "ru" "Громкость"
+    }
+    "Sounds"
+    {
+        "en" "Sounds"
+        "ru" "Звуки"
+    }
+    "UseCommand"
+    {
+        "en" "Use command: !vk <text>"
+        "ru" "Использование команды: !vk <текст>"
+    }
+    "SoundMessage"
+    {
+        "en" "Incoming messages"
+        "ru" "Входящие сообщения"
+    }
+    "SoundSend"
+    {
+        "en" "Sending messages"
+        "ru" "Отправка сообщений"
+    }
+    "SoundError"
+    {
+        "en" "Unsuccessful message sending"
+        "ru" "Неуспешная отправка сообщений"
+    }
+    
+    // Форматы отправки сообщений в беседы
+    // {1} - Ник, {2} - SteamId, {3} - Сообщение
+    "SendFormat"
+    {
+        "#format" "{1:s},{2:s},{3:s}"
+        "en" "{1}:\n\n{3}"
+        "ru" "{1}:\n\n{3}"
+    }
+    "SendFormatAdmins"
+    {
+        "#format" "{1:s},{2:s},{3:s}"
+        "en" "{1} <{2}>:\n\n{3}"
+        "ru" "{1} <{2}>:\n\n{3}"
+    }
+}
