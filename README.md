@@ -40,6 +40,18 @@
 ## Установка
 Файлы для серверной части находятся в директории **Server**, для веб - в **Web**
 1. Настроить серверную часть в **addons/sourcemod/configs/source_connection.ini** и **addons/sourcemod/translations/source_connection.txt**;
-2. Распределить файлы для серверной части по файлам сервера;
-3. Настроить веб часть в **configs/source_sonnection.php**;
-4. Распределить файлы для веб части по директории **BotEngineVK**.
+2. В **addons/sourcemod/configs/databases.cfg** указать соединение к бд **BotEngineVK**:
+```keyvalues
+    "source_connection"
+    {
+        "driver"    "mysql"
+        "host"      "хост"
+        "database"  "имя_бд"
+        "user"      "пользователь"
+        "pass"      "пароль"
+        "port"      "порт"
+    }
+```
+3. Распределить файлы для серверной части по файлам сервера;
+4. Настроить веб часть в **configs/source_sonnection.php**;
+5. Распределить файлы для веб части по директории **BotEngineVK**.
