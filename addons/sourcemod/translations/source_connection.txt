@@ -1,0 +1,198 @@
+"Phrases"
+{
+    "Prefix"
+    {
+        "en" "{blue}[VK] "
+        "ru" "{blue}[ВК] "
+    }
+    "Sender"
+    {
+        // кто и откуда (в чате)
+        "#format" "{1:s},{2:t}"
+        "en" "{green}{1} {default}[{2}]:"
+        "ru" "{green}{1} {default}[{2}]:"
+    }
+    "IsMute"
+    {
+        "en" "{default}You are muted"
+        "ru" "{default}Вы находитесь в муте"
+    }
+    "AntiFlood"
+    {
+        "#format" "{1:d}"
+        "en" "{default}You send messages too often. The next one will be available in {green}{1} {default}seconds"
+        "ru" "{default}Вы слишком часто отправляете сообщения. Следующее будет доступно через {green}{1} {default}секунд"
+    }
+    "AntiFloodAllow"
+    {
+        "en" "{default}Now you can send a message"
+        "ru" "{default}Теперь можете отправить сообщение"
+    }
+    "Successful"
+    {
+        "en" "{default}Message sent successfully"
+        "ru" "{default}Сообщение успешно отправлено"
+    }
+    "Failed"
+    {
+        "en" "{default}Message sending error. Perhaps VK fell"
+        "ru" "{default}Ошибка отправки сообщения. Возможно VK упал"
+    }
+    "FailedErrorPermission"
+    {
+        "en" "{default}Message sending error. The bot is not allowed to write to this chat"
+        "ru" "{default}Ошибка отправки сообщения. Боту запрещено писать в этот чат"
+    }
+    "FailedError"
+    {
+        "#format" "{1:d},{2:s}"
+        "en" "{default}Message sending error. Code: {1}; Message{2}"
+        "ru" "{default}Ошибка отправки сообщения. Код: {1}; Сообщение: {2}"
+    }
+    "VolumeMax"
+    {
+        "en" "{default}You can't make it louder than {green}100%"
+        "ru" "{default}Вы не можете сделать это громче {green}100%"
+    }
+    "VolumeMin"
+    {
+        "en" "{default}You can't make it quieter than {green}10%"
+        "ru" "{default}Вы не можете сделать это тише {green}10%"
+    }
+    
+
+    // Дальше цвета ставить нельзя
+    "Select"
+    {
+        "en" "Select recipient:"
+        "ru" "Выберите получателя:"
+    }
+    "OtherSender"
+    {
+        // кто, откуда и дата (другие чаты)
+        "#format" "{1:s},{2:t},{3:s}"
+        "en" "{1} [{2}] ({3})"
+        "ru" "{1} [{2}] ({3})"
+    }
+    "OtherNull"
+    {
+        "en" "No senders from other chats"
+        "ru" "Нет отправителей из других чатов"
+    }
+    "MenuTitle"
+    {
+        "en" "Source Connection"
+        "ru" "Source Connection"
+    }
+    "Volume"
+    {
+        "en" "Volume"
+        "ru" "Громкость"
+    }
+    "Sounds"
+    {
+        "en" "Sounds"
+        "ru" "Звуки"
+    }
+    "Show"
+    {
+        "#format" "{1:t}"
+        "en" "Message display: [{1}]"
+        "ru" "Отображение сообщений: [{1}]"
+    }
+    "Use"
+    {
+        "en" "Use command: !vk <text>"
+        "ru" "Использование команды: !vk <текст>"
+    }
+    "VolumeMsg"
+    {
+        "#format" "{1:d}"
+        "en" "Incoming message: [{1}]"
+        "ru" "Входящее сообщение: [{1}]"
+    }
+    "VolumeError"
+    {
+        "#format" "{1:d}"
+        "en" "Message sending error: [{1}]"
+        "ru" "Ошибка отправки сообщения: [{1}]"
+    }
+    "SoundMsg"
+    {
+        "#format" "{1:t}"
+        "en" "Incoming message: [{1}]"
+        "ru" "Входящее сообщение: [{1}]"
+    }
+    "SoundError"
+    {
+        "#format" "{1:t}"
+        "en" "Message sending error: [{1}]"
+        "ru" "Ошибка отправки сообщения: [{1}]"
+    }
+    "On"
+    {
+        "en" "+"
+    }
+    "Off"
+    {
+        "en" "-"
+    }
+    "Exit"
+    {
+        "en" "Exit"
+        "ru" "Выход"
+    }
+    "PM"
+    {
+        // {1} - peer_id чата
+        "#format" "{1:s}"
+        "en" "vk.com/id{1}"
+        "ru" "vk.com/id{1}"
+    }
+    "UnknownChat"
+    {
+        // {1} - peer_id чата
+        "#format" "{1:s}"
+        "en" "Chat {1}"
+        "ru" "Чат {1}"
+    }
+    
+    // Имена чатов в меню
+    "OtherChats"
+    {
+        "en" "Other chats"
+        "ru" "Другие чаты"
+    }
+    "GeneralChat"
+    {
+        // {1} - peer_id чата
+        "#format" "{1:s}"
+        "en" "General chat"
+        "ru" "Общий чат"
+    }
+    "AdminChat"
+    {
+        // {1} - peer_id чата
+        "#format" "{1:s}"
+        "en" "Admin chat"
+        "ru" "Админский чат"
+    }
+
+    // Форматы отправки сообщений в VK
+    // {1} - ник, {2} - SteamId, {3} - сообщение, {4} - имя сервера
+    "OtherChats_Send"
+    {
+        "#format" "{1:N},{2:s},{3:s},{4:s}"
+        "en" "{1}:\n{3}\n\n{4}"
+    }
+    "GeneralChat_Send"
+    {
+        "#format" "{1:N},{2:s},{3:s},{4:s}"
+        "en" "{1}:\n{3}\n\n{4}"
+    }
+    "AdminChat_Send"
+    {
+        "#format" "{1:N},{2:s},{3:s},{4:s}"
+        "en" "{1} <{2}>:\n{3}\n\n{4}"
+    }
+}
