@@ -27,10 +27,11 @@
 <br><br>
 ## Требования для работы серверной части
 1. SourceMod 1.10+;
-2. Basic Comm Control;
-3. Client Preferences;
-4. ChatModern;
-5. REST in Pawn.
+2. SDKTools;
+3. Basic Comm Control;
+4. Client Preferences;
+5. ChatModern;
+6. REST in Pawn.
 
 <br><br>
 ## Требования для работы серверной части
