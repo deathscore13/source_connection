@@ -68,4 +68,5 @@ Players: %d / %d (bots: %d)
 Map: %s
 Commands: %s',
     /* 38 */    'Sending messages to the server',
+    /* 39 */    'List of servers',
 ];

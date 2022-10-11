@@ -57,7 +57,7 @@ if ($cfg_source_connection = Config::parseByPeerId($vk->obj['peer_id'], Config::
             'names' => [
                 LANG_ENGINE[29]
             ],
-            'description' => LANG_SOURCE_CONNECTION[29]
+            'description' => LANG_SOURCE_CONNECTION[39]
         ]
     ]);
 
