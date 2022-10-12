@@ -30,13 +30,13 @@
 2. SDKTools;
 3. Basic Comm Control;
 4. Client Preferences;
-5. ChatModern;
+5. [ChatModern](https://github.com/deathscore13/ChatModern);
 6. REST in Pawn.
 
 <br><br>
 ## Требования для веб части
-1. BotEngineVK;
-2. Rights & Blocks.
+1. [BotEngineVK](https://github.com/deathscore13/BotEngineVK);
+2. [Rights & Blocks](https://github.com/deathscore13/rights_and_blocks).
 
 <br><br>
 ## Установка
