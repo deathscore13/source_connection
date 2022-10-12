@@ -2,7 +2,7 @@
 
 use xPaw\SourceQuery\SourceQuery;
 
-if ($m->cmd('sc') && $cfg_source_connection)
+if ($m->cmd('sc') && $CFG_SOURCE_CONNECTION)
 {
     $send = '';
     if ($m->param(1, ['rcon', LANG_SOURCE_CONNECTION[30]]))
@@ -16,7 +16,7 @@ if ($m->cmd('sc') && $cfg_source_connection)
         if (!($buffer = substr($m->getParamString(0), strlen($m->param(0)) + strlen($m->param(1)) + 2)))
             $m->error(LANG_ENGINE[11], 2);
 
-        foreach($cfg_source_connection as $key => $res)
+        foreach($CFG_SOURCE_CONNECTION as $key => $res)
         {
             if ($key === 'settings')
                 continue;
@@ -25,7 +25,7 @@ if ($m->cmd('sc') && $cfg_source_connection)
                 LANG_SOURCE_CONNECTION[1]).PHP_EOL.PHP_EOL;
         }
         
-        $vk->replyPM($send, $cfg_source_connection['settings']['response']);
+        $vk->replyPM($send, $CFG_SOURCE_CONNECTION['settings']['response']);
     }
     else if ($m->param(1))
     {
@@ -37,8 +37,8 @@ if ($m->cmd('sc') && $cfg_source_connection)
         {
             $msg = substr($m->getParamString(0), strlen($m->param(0)) + 1);
             
-            if ($buffer = SourceConnection::clearMsg($msg, $cfg_source_connection['settings']['replace']))
-                $send .= sprintf(LANG_SOURCE_CONNECTION[3], implode(', ', $buffer), $cfg_source_connection['settings']['replace']).
+            if ($buffer = SourceConnection::clearMsg($msg, $CFG_SOURCE_CONNECTION['settings']['replace']))
+                $send .= sprintf(LANG_SOURCE_CONNECTION[3], implode(', ', $buffer), $CFG_SOURCE_CONNECTION['settings']['replace']).
                     PHP_EOL.PHP_EOL;
             
             if (!($len = mb_strlen($msg)) || SourceConnection::MSG_SIZE <= $len)
@@ -49,7 +49,7 @@ if ($m->cmd('sc') && $cfg_source_connection)
             {
                 $sc = new SourceConnection($db);
                 $member = $vk->getMembers()['profiles'][$vk->obj['from_id']];
-                foreach ($cfg_source_connection as $key => $res)
+                foreach ($CFG_SOURCE_CONNECTION as $key => $res)
                 {
                     if ($key === 'settings')
                         continue;
@@ -75,7 +75,7 @@ if ($m->cmd('sc') && $cfg_source_connection)
                     }
                 }
             }
-            $vk->replyPM($send, $cfg_source_connection['settings']['response']);
+            $vk->replyPM($send, $CFG_SOURCE_CONNECTION['settings']['response']);
         }
     }
     else if ($blocks->isBlock($vk->obj['from_id'], 'sc_online'))
@@ -86,7 +86,7 @@ if ($m->cmd('sc') && $cfg_source_connection)
     {
         $players = $maxPlayers = $bots = 0;
         $q = new SourceQuery();
-        foreach ($cfg_source_connection as $key => $res)
+        foreach ($CFG_SOURCE_CONNECTION as $key => $res)
         {
             if ($key === 'settings')
                 continue;
@@ -126,13 +126,14 @@ if ($m->cmd('sc') && $cfg_source_connection)
                 $send .= $buffer.PHP_EOL.PHP_EOL;
             }
         }
-        $vk->replyPM($send.sprintf(LANG_SOURCE_CONNECTION[36], $players, $maxPlayers, $bots), $cfg_source_connection['settings']['response']);
+        $vk->replyPM($send.sprintf(LANG_SOURCE_CONNECTION[36], $players, $maxPlayers, $bots), $CFG_SOURCE_CONNECTION['settings']['response']);
     }
 
     exit();
 }
-else if (($res = $m->param(0)) && $cfg_source_connection &&
-    $res = Utils::findKey($res, $cfg_source_connection))
+else if ($CFG_SOURCE_CONNECTION &&
+    ($res = $m->param(0)) &&
+    $res = Utils::findKey($res, $CFG_SOURCE_CONNECTION))
 {
     if ($m->param(1, ['rcon', LANG_SOURCE_CONNECTION[30]]))
     {
@@ -146,7 +147,7 @@ else if (($res = $m->param(0)) && $cfg_source_connection &&
             $m->error(LANG_ENGINE[11], 2);
         
         $vk->replyPM(LANG_SOURCE_CONNECTION[0].PHP_EOL.PHP_EOL.(($res = SourceConnection::exec($res, $buffer)) ? $res :
-            LANG_SOURCE_CONNECTION[1]), $cfg_source_connection['settings']['response']);
+            LANG_SOURCE_CONNECTION[1]), $CFG_SOURCE_CONNECTION['settings']['response']);
     }
     else if (($buffer = $m->param(1)) &&
         $buffer !== 'info' && $buffer !== LANG_SOURCE_CONNECTION[31] &&
@@ -161,8 +162,8 @@ else if (($res = $m->param(0)) && $cfg_source_connection &&
             $msg = substr($m->getParamString(0), strlen($m->param(0)) + 1);
             $send = '';
             
-            if ($buffer = SourceConnection::clearMsg($msg, $cfg_source_connection['settings']['replace']))
-                $send .= sprintf(LANG_SOURCE_CONNECTION[3], implode(', ', $buffer), $cfg_source_connection['settings']['replace']).
+            if ($buffer = SourceConnection::clearMsg($msg, $CFG_SOURCE_CONNECTION['settings']['replace']))
+                $send .= sprintf(LANG_SOURCE_CONNECTION[3], implode(', ', $buffer), $CFG_SOURCE_CONNECTION['settings']['replace']).
                     PHP_EOL.PHP_EOL;
             
             if (!($len = mb_strlen($msg)) || SourceConnection::MSG_SIZE <= $len)
@@ -192,7 +193,7 @@ else if (($res = $m->param(0)) && $cfg_source_connection &&
                     }
                 }
             }
-            $vk->replyPM($send, $cfg_source_connection['settings']['response']);
+            $vk->replyPM($send, $CFG_SOURCE_CONNECTION['settings']['response']);
         }
     }
     else if ($blocks->isBlock($vk->obj['from_id'], 'sc_online'))
@@ -202,7 +203,7 @@ else if (($res = $m->param(0)) && $cfg_source_connection &&
     else
     {
         $subcmd = $m->param(1);
-        if (($subcmd === 'steamid' || $subcmd === LANG_SOURCE_CONNECTION[32]) && $cfg_source_connection['settings']['steamid'] &&
+        if (($subcmd === 'steamid' || $subcmd === LANG_SOURCE_CONNECTION[32]) && $CFG_SOURCE_CONNECTION['settings']['steamid'] &&
             !$rights->isRight($vk->obj['from_id'], 'sc_steamid'))
         {
             $m->error(LANG_RIGHTS_AND_BLOCKS[10], 'sc_steamid');
@@ -301,7 +302,7 @@ else if (($res = $m->param(0)) && $cfg_source_connection &&
             }
         }
         
-        $vk->replyPM($send, $cfg_source_connection['settings']['players'], [
+        $vk->replyPM($send, $CFG_SOURCE_CONNECTION['settings']['players'], [
             'dont_parse_links' => true,
             'disable_mentions' => true
         ]);

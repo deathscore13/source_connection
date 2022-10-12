@@ -36,7 +36,7 @@ else
     $m->error(LANG_ENGINE[16], 'rights_and_blocks');
 }
 
-if ($cfg_source_connection = Config::parseByPeerId($vk->obj['peer_id'], Config::load('source_connection')))
+if (Config::load('source_connection') && ($CFG_SOURCE_CONNECTION = Config::parseByPeerId($vk->obj['peer_id'], CFG_SOURCE_CONNECTION)))
 {
     $m->regCmd(['sc', LANG_SOURCE_CONNECTION[34]], LANG_SOURCE_CONNECTION[35], [
         [
@@ -61,7 +61,7 @@ if ($cfg_source_connection = Config::parseByPeerId($vk->obj['peer_id'], Config::
         ]
     ]);
 
-    foreach ($cfg_source_connection as $cmd => $info)
+    foreach ($CFG_SOURCE_CONNECTION as $cmd => $info)
         if ($cmd !== 'settings')
             $m->regCmd(explode(',', $cmd), $info['description'] ?? '', [
                 [

@@ -1,6 +1,6 @@
 <?php
 
-return [
+const CFG_SOURCE_CONNECTION = [
     'every' => [    // peer_id (через запятую) или: chats - все чаты, pm - личные сообщения, every - везде
         'settings' => [
             'replace' => '{green}❌{old}',    // в чате игры не поддерживаются символы больше 3-х байт. они будут заменены на указанный
