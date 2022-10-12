@@ -36,6 +36,7 @@ else
     $m->error(LANG_ENGINE[16], 'rights_and_blocks');
 }
 
+$CFG_SOURCE_CONNECTION = [];
 if (Config::load('source_connection') && ($CFG_SOURCE_CONNECTION = Config::parseByPeerId($vk->obj['peer_id'], CFG_SOURCE_CONNECTION)))
 {
     $m->regCmd(['sc', LANG_SOURCE_CONNECTION[34]], LANG_SOURCE_CONNECTION[35], [
