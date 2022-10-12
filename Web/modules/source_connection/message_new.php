@@ -151,7 +151,7 @@ else if ($CFG_SOURCE_CONNECTION &&
     }
     else if (($buffer = $m->param(1)) &&
         $buffer !== 'info' && $buffer !== LANG_SOURCE_CONNECTION[31] &&
-        $buffer !== 'steamid' && $buffer !== LANG_SOURCE_CONNECTION[32])
+        (!$CFG_SOURCE_CONNECTION['settings']['steamid'] || $buffer !== 'steamid' && $buffer !== LANG_SOURCE_CONNECTION[32]))
     {
         if ($blocks->isBlock($vk->obj['from_id'], 'sc_messages'))
         {
@@ -202,7 +202,7 @@ else if ($CFG_SOURCE_CONNECTION &&
     }
     else
     {
-        $subcmd = $m->param(1);
+        $subcmd = $buffer;
         if (($subcmd === 'steamid' || $subcmd === LANG_SOURCE_CONNECTION[32]) && $CFG_SOURCE_CONNECTION['settings']['steamid'] &&
             !$rights->isRight($vk->obj['from_id'], 'sc_steamid'))
         {
