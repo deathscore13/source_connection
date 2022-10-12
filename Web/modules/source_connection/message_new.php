@@ -270,7 +270,8 @@ else if ($CFG_SOURCE_CONNECTION &&
                     Utils::$sortKey = 'team';
                     usort($buffer['PlayersList'], 'Utils::usort_asc_callback');
 
-                    $send .= PHP_EOL.PHP_EOL.($subcmd ? LANG_SOURCE_CONNECTION[18] : LANG_SOURCE_CONNECTION[17]);
+                    $res = '';
+                    $muted = false;
                     foreach ($buffer['PlayersList'] as $player)
                     {
                         $d = floor($player['time'] / 86400);
@@ -278,7 +279,7 @@ else if ($CFG_SOURCE_CONNECTION &&
                         $m = floor(($player['time'] - ($d * 86400) - ($h * 3600)) / 60);
                         $s = floor(($player['time'] - ($d * 86400) - ($h * 3600) - ($m * 60)));
 
-                        $send .= PHP_EOL.sprintf(($subcmd ? LANG_SOURCE_CONNECTION[19] : LANG_SOURCE_CONNECTION[11]), 
+                        $res .= PHP_EOL.sprintf(($subcmd ? LANG_SOURCE_CONNECTION[19] : LANG_SOURCE_CONNECTION[11]), 
                         /* 01 */    LANG_SOURCE_CONNECTION[7 + $player['team']],
                         /* 02 */    $player['frags'],
                         /* 03 */    $player['deaths'],
@@ -289,7 +290,13 @@ else if ($CFG_SOURCE_CONNECTION &&
                         /* 07 */    $player['steamid'],
                         /* 08 */    $player['name']
                         );
+                        
+                        if ($player['muted'])
+                            $muted = true;
                     }
+
+                    $send .= PHP_EOL.PHP_EOL.(sprintf($subcmd ? LANG_SOURCE_CONNECTION[18] : LANG_SOURCE_CONNECTION[17], $muted ?
+                        LANG_SOURCE_CONNECTION[40] : '')).$res;
                 }
                 else
                 {

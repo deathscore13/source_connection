@@ -21,6 +21,7 @@
  * %6$d - Bots
  * %7$s - Map
  */
+// IF THE PARAMETER NUMBER IS NOT SPECIFIED, THEN THEY GO IN SEQUENCE
 const LANG_SOURCE_CONNECTION = [
     /* 00 */    'Response from the server:',
     /* 01 */    'Command sent successfully',
@@ -39,7 +40,7 @@ const LANG_SOURCE_CONNECTION = [
     /* 14 */    'm',
     /* 15 */    's',
     /* 16 */    '*🙊* ',
-    /* 17 */    '[Team] <<K/D>> (Time) *Muted* - Name',
+    /* 17 */    '[Team] <<K/D>> (Time) %s- Name',
     /* 18 */    '[Team] <SteamId> (Time) [IP] - Name',
     /* 19 */    '[%s] <%7$s> (%4$s) [%6$s] - %8$s',
     /* 20 */    '%s
@@ -69,4 +70,5 @@ Map: %s
 Commands: %s',
     /* 38 */    'Sending messages to the server',
     /* 39 */    'List of servers',
+    /* 40 */    '*Muted* ',
 ];
